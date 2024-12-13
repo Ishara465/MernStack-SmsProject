@@ -1,0 +1,87 @@
+/* General Home Page Styles */
+.home-page {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .header {
+    background: linear-gradient(to right, #00416A, #E4E5E6);
+    color: white;
+    padding: 80px 20px;
+  }
+  
+  .header h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+  }
+  
+  .header p {
+    font-size: 1.2rem;
+    margin-top: 20px;
+  }
+  
+  .header .btn {
+    padding: 12px 30px;
+    font-size: 1.1rem;
+  }
+  
+  .card {
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-body {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  .footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+  }
+  
+  .footer p {
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header h1 {
+      font-size: 2.5rem;
+    }
+  
+    .header p {
+      font-size: 1rem;
+    }
+  
+    .card {
+      margin-bottom: 20px;
+    }
+  }
+  
