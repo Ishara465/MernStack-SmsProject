@@ -5,7 +5,9 @@ const router = express.Router();
 
 // *? user Data save
 router.post("/smsBK/tutorSave", async (req, res) => {
+  console.log("Received Data: ",req.body)
     try {
+
       let tutorSave = new tutor(req.body);
       await tutorSave.save();
       return res.status(200).json({
