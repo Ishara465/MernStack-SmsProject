@@ -5,6 +5,7 @@ const router = express.Router();
 
 // *? class management data save
 router.post("/smsBK/classMgSave", async (req, res) => {
+  console.log("Received data ",req.body);
   try {
     let classMgSave = new classMg(req.body);
     await classMgSave.save();
@@ -19,63 +20,28 @@ router.post("/smsBK/classMgSave", async (req, res) => {
 });
 
 // *? update classes
-// router.put("/smsBK/classMgUpdate/:id", async (req, res) => {
-//   try {
-//     const updatedClass = await classMg.findByIdAndUpdate(
-//       req.params.id,
-//       { $set: req.body },
-//       { new: true }
-//     );
-//     if (!updatedClass) {
-//       return res.status(404).json({
-//         message: "class not found",
-//       });
-//     }
-//     return res.status(200).json({
-//       message: "class data updated successfully",
-//       updatedClass,
-//     });
-//   } catch (err) {
-//     return res.status(400).json({
-//       error: err.message,
-//     });
-//   }
-// });
-
-router.put("/smsBK/classMgUpdate/", async (req, res) => {
+router.put("/smsBK/classMgUpdate/:id", async (req, res) => {
   try {
-    // Extract the class ID from the route parameters
-    const classId = req.params.id;
-
-    // Perform the update using findByIdAndUpdate
     const updatedClass = await classMg.findByIdAndUpdate(
-      classId, // ID to find the document
-      { $set: req.body }, // Data to update
-      { new: true } // Return the updated document
+      req.params.id,
+      { $set: req.body },
+      { new: true }
     );
-
-    // If no document was found, return a 404 response
     if (!updatedClass) {
       return res.status(404).json({
-        message: "Class not found",
+        message: "class not found",
       });
     }
-
-    // Return the updated document along with a success message
     return res.status(200).json({
-      message: "Class data updated successfully",
+      message: "class data updated successfully",
       updatedClass,
     });
   } catch (err) {
-    // Handle any errors and return a 400 response
     return res.status(400).json({
       error: err.message,
     });
   }
 });
-
-
-
 
 
 //  ? Get classes
@@ -113,6 +79,22 @@ router.delete("/smsBK/classDelete/:id", async (req, res) => {
       error: err,
     });
   }
+});
+
+//  get class by ID
+router.get('/smsBK/getClass/:id', (req, res) => {
+  const id = req.params.id;
+    classMg.findById(id) // Pass the ID directly, not as an object
+    .then(classMg => {
+      if (!classMg) {
+        return res.status(404).json({ error: 'classes not found' }); // Handle case where tutor is not found
+      }
+      res.json(classMg);
+    })
+    .catch(err => {
+      console.error("Error fetching tutor:", err); // Log the error for debugging
+      res.status(500).json({ error: 'Server error' }); // Handle server errors
+    });
 });
 
 module.exports = router;

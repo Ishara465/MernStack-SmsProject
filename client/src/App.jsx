@@ -7,6 +7,7 @@ import StudentManagment from "./components/StudentManagment/student";
 import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Tutor from "./components/Tutor/Tutor";
 import Footer from "./components/Footer/Footer";
+import ClassManagement from "./components/ClassManagement/ClassManagement";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/student" element={<StudentManagment />} />
           <Route path="/tutor" element={<Tutor/>} />
+          <Route path="/classMng" element={<ClassManagement/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>

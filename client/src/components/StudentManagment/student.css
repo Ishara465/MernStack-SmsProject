@@ -1,6 +1,6 @@
 /* Main container */
 .Main {
-  background-color: #f5f2f200;
+  background-color: #e4dada00;
   height: 100%;
   padding: 20px;
   border-radius: 10px;
@@ -16,7 +16,7 @@ h1 {
 
 /* Column 1 - Search Section */
 .column-01 {
-  background-color: #fff;
+  background-color: #f3f3f3;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
