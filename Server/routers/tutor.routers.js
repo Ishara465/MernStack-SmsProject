@@ -85,4 +85,21 @@ router.get("/smsBK/getAllTutors", async (req, res) => {
     }
  });
 
+ //  get Tutor by ID
+ router.get('/smsBK/getTutor/:id', (req, res) => {
+  const id = req.params.id;
+  tutor.findById(id) // Pass the ID directly, not as an object
+    .then(tutor => {
+      if (!tutor) {
+        return res.status(404).json({ error: 'Tutor not found' }); // Handle case where tutor is not found
+      }
+      res.json(tutor);
+    })
+    .catch(err => {
+      console.error("Error fetching tutor:", err); // Log the error for debugging
+      res.status(500).json({ error: 'Server error' }); // Handle server errors
+    });
+});
+
+
   module.exports =router;

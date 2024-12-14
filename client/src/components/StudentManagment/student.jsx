@@ -3,11 +3,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import './student.css';
 import axios from 'axios'; // Correct spelling of 'axios'
-import { useNavigate,Link } from 'react-router-dom'; // Import useNavigate hook
+import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 
 
 function StudentManagement ()  {
-  //! Save Students
+  //!  Declare state variables
   const [stName, SetStName] = useState("");
   const [stPConNumber, SetPConNumber] = useState("");
   const [stConNumber, SetStConNumber] = useState("");
@@ -22,12 +22,12 @@ function StudentManagement ()  {
   const navigate = useNavigate(); // Initialize useNavigate
 
   
-
+// ! Save Student Function
   const Submit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("http://127.0.0.1:8000/smsBK/StudentSave", {
-        stname: stName, // Aligning frontend state with backend schema
+        stName: stName, // Aligning frontend state with backend schema
         pConNumber: stPConNumber,
         stConNumber: stConNumber,
         stDOB: new Date(stDOB), // Ensure valid date format
@@ -52,12 +52,6 @@ function StudentManagement ()  {
   
   // ! get all students
  
-  // useEffect(() => {
-  //  axios.get('http://127.0.0.1:8000/smsBK/getAllStudents')
-  //  .then(result => setStudents(result.data))
-  //  .catch(err => console.log(err))
-  // }, []);
-
   React.useEffect(() => {
     axios.get("http://localhost:8000/smsBK/getAllStudents")
       .then((response) => {
@@ -80,10 +74,51 @@ const handleDelete = (id)=>{
   .catch(err => console.log(err))
 }
 
+// ! Student View by ID
+const handleView = (id) => {
+  axios
+    .get("http://127.0.0.1:8000/smsBK/getStudent/" + id)
+    .then((result) => {
+      console.log(result);
+      SetStName(result.data.stName);
+      SetPConNumber(result.data.pConNumber);
+      SetStConNumber(result.data.stConNumber);
+      SetStDOB(result.data.stDOB);
+      SetStAddress(result.data.stAddress);
+      SetStNic(result.data.stNic);
+      SetStEmail(result.data.stEmail);
+      SetStAge(result.data.stAge);
+    })
+    .catch((err) => console.error("Error fetching data:", err));
+};
 
 
- 
-  
+//! Update student data
+const handleUpdate = async (id,e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.put("http://127.0.0.1:8000/smsBK/studentUpdate/"+id, {
+      stName: stName,
+      pConNumber: stPConNumber,
+      stConNumber: stConNumber,
+      stDOB: new Date(stDOB), // Ensure valid date format
+      stAddress: stAddress,
+      stNic: stNic,
+      stEmail: stEmail,
+      stAge: stAge,
+    });
+    console.log("Data updated successfully:", response.data);
+   window.location.reload()
+  } catch (error) {
+    if (error.response) {
+      console.error("Error response from server:", error.response.data);
+    } else if (error.request) {
+      console.error("No response from server:", error.request);
+    } else {
+      console.error("Error setting up request:", error.message);
+    }
+  }
+};
 
   return (
     <div className='Main'>
@@ -93,16 +128,17 @@ const handleDelete = (id)=>{
         <div className="column-01 col-2 p-5 m-4">
           <div className="search-section">
             <h6 className='fs-2'>Student List</h6>
-            <div className="overflow-scroll" style={{ maxHeight: '500px', marginTop: '20px'}}>
+            <div className="overflow-scroll" style={{ maxHeight: '305px', marginTop: '20px',minWidth:"250px"}}>
             {students.map((student,index) => {
               return <ul key={index} style={{padding:0}}
               >
-               <div className='justify-content-center fs-6 ' style={{border:"solid 1px white",padding:"8px",borderRadius:"10px"}}>
+               <div className='justify-content-center fs-6 ' style={{border:"solid 1px white",padding:"1px",borderRadius:"10px"}}>
                <li  style={{cursor:"pointer",color:"black"}}
-               >{student.stname}</li> 
+               >{student.stName}</li> 
                <div className = 'd-flex justify-content mt-1'>
-               <li> <Link to={`/stUpdate/${student._id}`} className="btn btn-success p-1">Update</Link></li>
+               <li> <button  className="btn btn-success p-1" onClick={(e)=>handleUpdate(student._id,e)}>Update</button></li>
                <li><button className='btn btn-danger p-1' onClick={()=> handleDelete(student._id)}>Delete</button> </li>
+               <li><button className='btn btn-warning' onClick={()=>handleView(student._id)}>View</button></li>
                </div>
                </div>
               </ul>
@@ -113,7 +149,7 @@ const handleDelete = (id)=>{
 
         {/* Second column Body */}
         <div className=" col-8 p-5 m-1">
-          <Form className='container column-02' onSubmit={Submit}>
+          <Form className='container column-02'>
             <div className="row">
               <div className="col-md-6">
                 <Form.Group className="mb-3" controlId="formStudentName">
@@ -121,6 +157,7 @@ const handleDelete = (id)=>{
                     type="text"
                     placeholder="Enter student name"
                     onChange={(e) => SetStName(e.target.value)}
+                    value={stName}
                   />
                 </Form.Group>
 
@@ -129,6 +166,7 @@ const handleDelete = (id)=>{
                     type="text"
                     placeholder="Enter Parent Contact Number"
                     onChange={(e) => SetPConNumber(e.target.value)}
+                    value={stPConNumber}
                   />
                 </Form.Group>
 
@@ -137,6 +175,7 @@ const handleDelete = (id)=>{
                     type="text"
                     placeholder="Enter Student Contact Number"
                     onChange={(e) => SetStConNumber(e.target.value)}
+                    value={stConNumber}
                   />
                 </Form.Group>
 
@@ -145,6 +184,7 @@ const handleDelete = (id)=>{
                     type="text"
                     placeholder="Enter Student NIC"
                     onChange={(e) => SetStNic(e.target.value)}
+                    value={stNic}
                   />
                 </Form.Group>
               </div>
@@ -155,6 +195,7 @@ const handleDelete = (id)=>{
                     type="date"
                     placeholder="Enter Student Birthday"
                     onChange={(e) => SetStDOB(e.target.value)}
+                    value={stDOB}
                   />
                 </Form.Group>
 
@@ -163,6 +204,7 @@ const handleDelete = (id)=>{
                     type="text"
                     placeholder="Enter Student Address"
                     onChange={(e) => SetStAddress(e.target.value)}
+                    value={stAddress}
                   />
                 </Form.Group>
 
@@ -171,6 +213,7 @@ const handleDelete = (id)=>{
                     type="email"
                     placeholder="Enter Student Email"
                     onChange={(e) => SetStEmail(e.target.value)}
+                    value={stEmail}
                   />
                 </Form.Group>
 
@@ -179,6 +222,7 @@ const handleDelete = (id)=>{
                     type="text"
                     placeholder="Enter Student Age"
                     onChange={(e) => SetStAge(e.target.value)}
+                    value={stAge}
                   />
                 </Form.Group>
               </div>
@@ -187,7 +231,8 @@ const handleDelete = (id)=>{
             {/* Submit Button */}
             <div className="d-flex justify-content-center mt-3">
               <div className="m-2">
-                <Button className='btn btn-success' type="submit" >Submit</Button>
+                <Button className='btn btn-success' type="submit" onClick={Submit}>Submit</Button>
+                <Button className='btn btn-secondary m-1 p-2' type="clear" >Clear</Button>
               </div>
             </div>
           </Form>
