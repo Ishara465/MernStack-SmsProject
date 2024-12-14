@@ -6,7 +6,7 @@ import axios from 'axios';
 
 function Tutor  ()  {
 
-    // !Save Tutor
+    // !Declare state variables
     const [tName,setTName] = useState("");
     const [tPhoneNumber,setTPhoneNumber] = useState("");
     const [tDob,setTDob] = useState("");
@@ -15,6 +15,7 @@ function Tutor  ()  {
     const [email,setEmail] = useState("");
     const [tSubject,setTSubject] = useState("");
     
+    // ! Save Student
     const Submit = async(e) =>{
       e.preventDefault();
       try{

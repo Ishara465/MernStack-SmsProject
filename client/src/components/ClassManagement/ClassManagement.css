@@ -1,0 +1,144 @@
+/* Main container */
+.Main {
+  background-color: #f9f9f9;
+  height: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+/* Header */
+h1 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Column 1 - Class List Section */
+.column-01 {
+  background-color: #f0f4f8;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  overflow-y: auto;
+  max-height: 600px;
+}
+
+.column-01 h6 {
+  color: #007bff;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.column-01 ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.column-01 ul li {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.column-01 ul li:hover {
+  background-color: #e9ecef;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.column-01 .btn {
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.column-01 .btn-success {
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+}
+
+.column-01 .btn-danger {
+  background-color: #dc3545;
+  border: none;
+  color: #fff;
+}
+
+.column-01 .btn-warning {
+  background-color: #ffc107;
+  border: none;
+  color: #fff;
+}
+
+.column-01 .btn:hover {
+  opacity: 0.9;
+}
+
+/* Column 2 - Form Section */
+.column-02 {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.column-02 .form-control {
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+}
+
+.column-02 label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #495057;
+}
+
+.column-02 .row {
+  margin-bottom: 20px;
+}
+
+.column-02 .btn-success {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.column-02 .btn-secondary {
+  background-color: #6c757d;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.column-02 .btn:hover {
+  opacity: 0.9;
+}
+
+/* Time Input */
+.column-02 .time-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.column-02 .time-input label {
+  margin-right: 10px;
+  font-size: 1rem;
+  color: #495
