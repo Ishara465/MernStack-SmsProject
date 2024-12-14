@@ -71,6 +71,52 @@ function Tutor  ()  {
     .catch(err => console.log(err))
   }
 
+  
+ // ! View Tutor by ID
+const handleView = (id) => {
+  axios
+    .get(`http://127.0.0.1:8000/smsBK/getTutor/${id}`)
+    .then((result) => {
+      console.log(result);
+      console.log("working")
+      setTName(result.data.tName);
+      setTPhoneNumber(result.data.tPhoneNumber);
+      setTDob(result.data.tDob);
+      setTAddress(result.data.tAddress);
+      setTNic(result.data.tNic);
+      setEmail(result.data.email);
+      setTSubject(result.data.tSubject);
+     
+    })
+    .catch((err) => console.error("Error Fetching data:", err));
+};
+
+//! Tutor update by ID
+const handleUpdate = async (id,e) =>{
+  e.preventDefault();
+  try{
+    const response = await axios.put(`http://127.0.0.1:8000/smsBK/tutorUpdate/${id}`,{
+      tName: tName, 
+      tPhoneNumber: tPhoneNumber,
+      tDob: new Date(tDob),
+      tAddress: tAddress, 
+      tNic: tNic,
+      email: email,
+      tSubject: tSubject,
+    })
+    console.log("Data updated successfully:", response.data);
+    window.location.reload()
+  }catch (error) {
+    if (error.response) {
+      console.error("Error response from server:", error.response.data);
+    } else if (error.request) {
+      console.error("No response from server:", error.request);
+    } else {
+      console.error("Error setting up request:", error.message);
+    }
+  }
+}
+
 
 
 
@@ -86,13 +132,16 @@ function Tutor  ()  {
             <div className='overflow-scroll' style={{maxHeight:'500px',marginTop:"20px",maxWidth:"600px"}}>
             {tutors.length > 0 ? (
                 tutors.map((tutor, index) => (
+                
                 <ul key={index}>
                   <li>{tutor.tName}</li>
 
                   <div className='d-flex justify-content mt-1'>
-                  <li> <Button variant="outline-success p-1 m-1">Update</Button></li>
+                  <li> <Button variant="outline-success p-1 m-1" onClick={(e) =>handleUpdate(tutor._id,e)}>Update</Button></li>
                   <li> <Button variant="outline-danger  p-1 m-1" onClick={() => handleDelete(tutor._id)}>Delete</Button></li>
-                  <li><Button variant="outline-warning  p-1 m-1">View</Button></li>
+                  <li><Button variant="outline-warning  p-1 m-1" 
+                  key={tutor._id}
+                  onClick={()=>handleView(tutor._id)}>View</Button></li>
                   </div>
                 </ul>
                 ))
@@ -106,7 +155,7 @@ function Tutor  ()  {
 
         {/* Second column body */}
         <div className="col-8 p-5 m-1">
-        <Form className='container column-02' onSubmit={Submit}>
+        <Form className='container column-02' >
             <div className="row">
               <div className="col-md-6">
                 <Form.Group className="mb-3" controlId="formStudentName">
@@ -114,6 +163,7 @@ function Tutor  ()  {
                     type="text"
                     placeholder="Enter tutor name"
                     onChange={(e) => setTName(e.target.value)}
+                    value={tName}
                   />
                 </Form.Group>
 
@@ -122,6 +172,7 @@ function Tutor  ()  {
                     type="text"
                     placeholder="Enter tutor Contact Number"
                     onChange={(e) => setTPhoneNumber(e.target.value)}
+                    value={tPhoneNumber}
                   />
                 </Form.Group>
 
@@ -130,6 +181,7 @@ function Tutor  ()  {
                     type="date"
                     placeholder="Enter date of birth"
                     onChange={(e) => setTDob(e.target.value)}
+                    value={tDob}
                   />
                 </Form.Group>
 
@@ -138,6 +190,7 @@ function Tutor  ()  {
                     type="text"
                     placeholder="Enter tutor address"
                     onChange={(e) => setTAddress(e.target.value)}
+                    value={tAddress}
                   />
                 </Form.Group>
               </div>
@@ -148,6 +201,7 @@ function Tutor  ()  {
                     type="text"
                     placeholder="Enter tutor Nic"
                     onChange={(e) => setTNic(e.target.value)}
+                    value={tNic}
                   />
                 </Form.Group>
 
@@ -156,6 +210,7 @@ function Tutor  ()  {
                     type="email"
                     placeholder="Enter tutor Email"
                     onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                   />
                 </Form.Group>
 
@@ -164,6 +219,7 @@ function Tutor  ()  {
                     type="text"
                     placeholder="Enter tutor subject (only Subject Number)"
                     onChange={(e) => setTSubject(e.target.value)}
+                    value={tSubject}
                   />
                 </Form.Group>
 
@@ -173,7 +229,8 @@ function Tutor  ()  {
             {/* Submit Button */}
             <div className="d-flex justify-content-center mt-3">
               <div className="m-2">
-                <Button className='btn btn-success' type="submit" >Submit</Button>
+                <Button className='btn btn-success m-1' type="submit" onClick={Submit}>Submit</Button>
+                <Button className='btn btn-secondary m-1 p-2' type="clear" >Clear</Button>
               </div>
             </div>
           </Form>
