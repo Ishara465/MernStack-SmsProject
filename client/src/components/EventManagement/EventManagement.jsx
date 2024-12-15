@@ -114,7 +114,7 @@ const handleUpdate = async (id,e) =>{
     <div className="row">
       <div className="column-01 col-2 m-4">
         <div>
-          <h6 className='fs-2'>Tutor List</h6>
+          <h6 className='fs-2'>Event Name List</h6>
           
           {/*Tutor details updated div */}
           <div className='overflow-scroll' style={{maxHeight:'500px',marginTop:"20px",maxWidth:"600px"}}>
