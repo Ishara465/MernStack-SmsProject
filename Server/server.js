@@ -29,6 +29,7 @@ const classMg = require('./routers/classManagement.router')
 const eventMg = require('./routers/eventMg.router')
 const login = require('./routers/loginAdmin.router');
 const classFee = require('./routers/classFee.router')
+const attendanceMg = require('./routers/attendanceManagement.router')
 //app middleware
 app.use(bodyParser.json());
 app.use(cors());
@@ -40,6 +41,7 @@ app.use(classMg);
 app.use(eventMg)
 app.use(login)
 app.use(classFee)
+app.use(attendanceMg)
 
 
 

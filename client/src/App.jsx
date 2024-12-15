@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer";
 import ClassManagement from "./components/ClassManagement/ClassManagement";
 import EventManagement from "./components/EventManagement/EventManagement";
 import ClassFee from "./components/ClassFee/ClassFee";
+import AttedanceManagement from "./components/AttendanceManagement/AttedanceManagement";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/classMng" element={<ClassManagement/>} />
           <Route path="/eventMng" element={<EventManagement/>} />
           <Route path="/classFee" element={<ClassFee/>} />
+          <Route path="/attendanceMg" element={<AttedanceManagement/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>
