@@ -79,4 +79,21 @@ router.delete("/smsBK/eventDelete/:id", async (req, res) => {
   }
 });
 
+
+//  get Event by ID
+router.get('/smsBK/getEvent/:id', (req, res) => {
+  const id = req.params.id;
+  eventMg.findById(id) // Pass the ID directly, not as an object
+    .then(eventMg => {
+      if (!eventMg) {
+        return res.status(404).json({ error: 'event not found' }); // Handle case where tutor is not found
+      }
+      res.json(eventMg);
+    })
+    .catch(err => {
+      console.error("Error fetching tutor:", err); // Log the error for debugging
+      res.status(500).json({ error: 'Server error' }); // Handle server errors
+    });
+});
+
 module.exports = router;
