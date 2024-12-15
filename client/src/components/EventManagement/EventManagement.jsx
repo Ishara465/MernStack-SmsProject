@@ -35,7 +35,7 @@ function EventManagement(){
       }
     }
 
-    // !Get All Tutor
+    // !Get All events
     const [events,setEvents] = useState([])
 
     React.useEffect(() => {
@@ -80,6 +80,28 @@ const handleView = (id) => {
     .catch((err) => console.error("Error Fetching data:", err));
 };
 
+//! Event update by ID
+const handleUpdate = async (id,e) =>{
+  e.preventDefault();
+  try{
+    const response = await axios.put(`http://127.0.0.1:8000/smsBK/eventMgUpdate/${id}`,{
+          title, 
+          startDateTime:new Date(startDateTime),
+          endDateTime: new Date(endDateTime),
+          description
+    })
+    console.log("Data updated successfully:", response.data);
+    window.location.reload()
+  }catch (error) {
+    if (error.response) {
+      console.error("Error response from server:", error.response.data);
+    } else if (error.request) {
+      console.error("No response from server:", error.request);
+    } else {
+      console.error("Error setting up request:", error.message);
+    }
+  }
+}
 
 
 
@@ -120,8 +142,8 @@ const handleView = (id) => {
       </div>
 
       {/* Second column body */}
-      <div className="col-8 p-5 m-1">
-      <Form className='container column-02' >
+      <div className="col-8 p-5 m-1 ">
+      <Form className='container column-02 ' >
           <div className="row">
             <div className="col-md-6">
               <Form.Group className="mb-3" >
