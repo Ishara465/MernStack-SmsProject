@@ -27,8 +27,8 @@ const tutor = require('./routers/tutor.routers')
 const studentMg = require('./routers/student.router')
 const classMg = require('./routers/classManagement.router')
 const eventMg = require('./routers/eventMg.router')
-const login = require('./routers/loginAdmin.router')
-
+const login = require('./routers/loginAdmin.router');
+const classFee = require('./routers/classFee.router')
 //app middleware
 app.use(bodyParser.json());
 app.use(cors());
@@ -39,6 +39,7 @@ app.use(studentMg)
 app.use(classMg);
 app.use(eventMg)
 app.use(login)
+app.use(classFee)
 
 
 

@@ -138,9 +138,9 @@ const handleUpdate = async (id,e) =>{
                   <li>{tutor.tName}</li>
 
                   <div className='d-flex justify-content mt-1'>
-                  <li> <Button variant="outline-success p-1 m-1" onClick={(e) =>handleUpdate(tutor._id,e)}>Update</Button></li>
-                  <li> <Button variant="outline-danger  p-1 m-1" onClick={() => handleDelete(tutor._id)}>Delete</Button></li>
-                  <li><Button variant="outline-warning  p-1 m-1" 
+                  <li> <Button variant="btn btn-success p-1 m-1" onClick={(e) =>handleUpdate(tutor._id,e)}>Update</Button></li>
+                  <li> <Button variant="btn btn-danger  p-1 m-1" onClick={() => handleDelete(tutor._id)}>Delete</Button></li>
+                  <li><Button variant="btn btn-warning  p-1 m-1" 
                   key={tutor._id}
                   onClick={()=>handleView(tutor._id)}>View</Button></li>
                   </div>

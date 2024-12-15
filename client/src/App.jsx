@@ -9,6 +9,7 @@ import Tutor from "./components/Tutor/Tutor";
 import Footer from "./components/Footer/Footer";
 import ClassManagement from "./components/ClassManagement/ClassManagement";
 import EventManagement from "./components/EventManagement/EventManagement";
+import ClassFee from "./components/ClassFee/ClassFee";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/tutor" element={<Tutor/>} />
           <Route path="/classMng" element={<ClassManagement/>} />
           <Route path="/eventMng" element={<EventManagement/>} />
+          <Route path="/classFee" element={<ClassFee/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>

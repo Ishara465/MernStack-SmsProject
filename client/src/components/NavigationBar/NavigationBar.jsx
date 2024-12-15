@@ -19,7 +19,7 @@ const NavigationBar = () => {
             <NavDropdown title="Others" id="nav-dropdown">
               <NavDropdown.Item eventKey="4.1">Student Attendance</NavDropdown.Item>
               <NavDropdown.Item eventKey="4.2" href="/eventMng">Event And Announcement</NavDropdown.Item>
-              <NavDropdown.Item eventKey="4.2">Class Fee</NavDropdown.Item>            
+              <NavDropdown.Item eventKey="4.2" href="/classFee">Class Fee</NavDropdown.Item>            
             </NavDropdown>
             
           </Nav>
