@@ -8,6 +8,7 @@ import NavigationBar from "./components/NavigationBar/NavigationBar";
 import Tutor from "./components/Tutor/Tutor";
 import Footer from "./components/Footer/Footer";
 import ClassManagement from "./components/ClassManagement/ClassManagement";
+import EventManagement from "./components/EventManagement/EventManagement";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/student" element={<StudentManagment />} />
           <Route path="/tutor" element={<Tutor/>} />
           <Route path="/classMng" element={<ClassManagement/>} />
+          <Route path="/eventMng" element={<EventManagement/>} />
         </Routes>
         <Footer/>
       </BrowserRouter>
