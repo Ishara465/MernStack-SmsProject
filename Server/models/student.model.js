@@ -5,7 +5,7 @@ const studentMGSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pConNumber: {
+  stId: {
     type: String,
     required: true,
   },

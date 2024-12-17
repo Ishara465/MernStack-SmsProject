@@ -5,6 +5,15 @@ const classMGSchema = new mongoose.Schema({
     className:{
         type:String,
         required:true,
+
+    
+    },
+
+    classId:{
+        type:String,
+        required:true,
+
+    
     },
     classType:{
         type:String,

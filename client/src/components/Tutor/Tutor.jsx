@@ -119,8 +119,6 @@ const handleUpdate = async (id,e) =>{
 }
 
 
-
-
   return (
     <div className='Main d-flex flex-column min-vh-100'>
       <h1 className='text-center fw-bold m-1'>Tutor Management</h1>
@@ -218,7 +216,7 @@ const handleUpdate = async (id,e) =>{
                 <Form.Group className="mb-3" controlId="formStudentEmail">
                   <Form.Control
                     type="text"
-                    placeholder="Enter tutor subject (only Subject Number)"
+                    placeholder="Enter tutor subject"
                     onChange={(e) => setTSubject(e.target.value)}
                     value={tSubject}
                   />
