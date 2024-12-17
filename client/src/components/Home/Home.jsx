@@ -32,7 +32,7 @@ const Home = () => {
                 <p className="card-text">
                   Easily enroll new students, track their progress, and manage their records.
                 </p>
-                <Link to="/student" className="btn btn-info">Learn More</Link>
+              
               </div>
             </div>
           </div>
@@ -51,7 +51,7 @@ const Home = () => {
                 <p className="card-text">
                   Organize courses, assign teachers, and manage course materials with ease.
                 </p>
-                <Link to="/student" className="btn btn-info">Learn More</Link>
+                
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@ const Home = () => {
                 <p className="card-text">
                   Track student progress and performance with detailed reports and analytics.
                 </p>
-                <Link to="/student" className="btn btn-info">Learn More</Link>
+               
               </div>
             </div>
           </div>
