@@ -17,6 +17,8 @@ const [day,setDay]= useState("");
 const [startTime,setStartTime]=useState("");
 const [endTime,setEndTime] = useState("");
 const [classRoom,setClassRoom] = useState("")
+const [classId,setClassId] = useState("")
+
 const [classes,setClasses] = useState([])
 
 
@@ -35,7 +37,8 @@ const SaveClass =async (e) =>{
             day: new Date(day),
             startTime:startTime,
             endTime:endTime,
-            classRoom:classRoom
+            classRoom:classRoom,
+            classId:classId
         });
         console.log("Data saved successfully: ",response.data);
         window.location.reload();
@@ -94,6 +97,7 @@ const handleView = (id) => {
         setStartTime(result.data.startTime); 
         setEndTime(result.data.endTime);
         setClassRoom(result.data.classRoom);
+        setClassId(result.data.classId);
 
        
       })
@@ -115,7 +119,8 @@ const handleUpdate = async (id,e) =>{
         day: new Date(day),
         startTime:startTime,
         endTime:endTime,
-        classRoom:classRoom
+        classRoom:classRoom,
+        classId:classId
       })
       console.log("Data updated successfully:", response.data);
       window.location.reload()
@@ -132,7 +137,7 @@ const handleUpdate = async (id,e) =>{
 
 
   return (
-    <div className="Main">
+    <div className="Main ">
       <h1 className="text-center fw-bold m-1">Class Management</h1>
       <div className="row">
         <div className="column-01 col-2 m-4">
@@ -180,6 +185,15 @@ const handleUpdate = async (id,e) =>{
                   />
                 </Form.Group>
 
+                <Form.Group className="mb-2" >
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter class Id"
+                    onChange={(e) => setClassId(e.target.value)}
+                    value={classId}
+                  />
+                </Form.Group>
+
                 <Form.Group className="mb-3" >
                   <Form.Control
                     type="text"
@@ -215,6 +229,8 @@ const handleUpdate = async (id,e) =>{
                     value={day}
                   />
                 </Form.Group>
+
+                
               </div>
 
               <div className="col-md-6">
@@ -253,6 +269,8 @@ const handleUpdate = async (id,e) =>{
                     value={classRoom}
                   />
                 </Form.Group>
+
+                
 
                 <div className="d-flex justify-content-between align-items-center">
                   <Form.Group

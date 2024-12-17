@@ -28,7 +28,7 @@ const tutorSchema = new mongoose.Schema({
         required: true
     },
     tSubject: {
-        type: Number,
+        type: String,
         required: true
     },
    

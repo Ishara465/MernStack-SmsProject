@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate hook
 function StudentManagement ()  {
   //!  Declare state variables
   const [stName, SetStName] = useState("");
-  const [stPConNumber, SetPConNumber] = useState("");
+  const [stId, SetStId] = useState("");
   const [stConNumber, SetStConNumber] = useState("");
   const [stDOB, SetStDOB] = useState("");
   const [stAddress, SetStAddress] = useState("");
@@ -29,7 +29,7 @@ function StudentManagement ()  {
     try {
       const response = await axios.post("http://127.0.0.1:8000/smsBK/StudentSave", {
         stName: stName, // Aligning frontend state with backend schema
-        pConNumber: stPConNumber,
+        stId: stId,
         stConNumber: stConNumber,
         stDOB: new Date(stDOB), // Ensure valid date format
         stAddress: stAddress,
@@ -82,7 +82,7 @@ const handleView = (id) => {
     .then((result) => {
       console.log(result);
       SetStName(result.data.stName);
-      SetPConNumber(result.data.pConNumber);
+      SetStId(result.data.stId);
       SetStConNumber(result.data.stConNumber);
       SetStDOB(result.data.stDOB);
       SetStAddress(result.data.stAddress);
@@ -100,7 +100,7 @@ const handleUpdate = async (id,e) => {
   try {
     const response = await axios.put("http://127.0.0.1:8000/smsBK/studentUpdate/"+id, {
       stName: stName,
-      pConNumber: stPConNumber,
+      stId: stId,
       stConNumber: stConNumber,
       stDOB: new Date(stDOB), // Ensure valid date format
       stAddress: stAddress,
@@ -122,7 +122,8 @@ const handleUpdate = async (id,e) => {
 };
 
   return (
-    <div className='Main'>
+   <div className="d-flex flex-column min-vh-100">
+     <div className='Main '>
       <h1 className='text-center fw-bold m-1'>Student Management</h1>
       <div className='row mt-2'>
         {/* 1st column search section */}
@@ -165,9 +166,9 @@ const handleUpdate = async (id,e) => {
                 <Form.Group className="mb-3" controlId="formParentContact">
                   <Form.Control
                     type="text"
-                    placeholder="Enter Parent Contact Number"
-                    onChange={(e) => SetPConNumber(e.target.value)}
-                    value={stPConNumber}
+                    placeholder="Enter Student ID"
+                    onChange={(e) => SetStId(e.target.value)}
+                    value={stId}
                   />
                 </Form.Group>
 
@@ -240,6 +241,8 @@ const handleUpdate = async (id,e) => {
         </div>
       </div>
     </div>
+    
+   </div>
   );
 };
 
