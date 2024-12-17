@@ -122,7 +122,8 @@ const handleUpdate = async (id,e) => {
 };
 
   return (
-    <div className='Main'>
+   <div className="d-flex flex-column min-vh-100">
+     <div className='Main '>
       <h1 className='text-center fw-bold m-1'>Student Management</h1>
       <div className='row mt-2'>
         {/* 1st column search section */}
@@ -240,6 +241,8 @@ const handleUpdate = async (id,e) => {
         </div>
       </div>
     </div>
+    
+   </div>
   );
 };
 

@@ -1,9 +1,25 @@
-*{
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-}
+  }
+  
 ul {
     list-style: none; /* Removes bullets */
     padding-left: 0; /* Optional: removes the left padding */
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+   
+  }
+  
+  .Main {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Viewport height */
+    overflow-y: auto; /* Enable scrolling only when needed */
   }
   

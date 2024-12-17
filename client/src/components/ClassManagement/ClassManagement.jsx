@@ -132,7 +132,7 @@ const handleUpdate = async (id,e) =>{
 
 
   return (
-    <div className="Main">
+    <div className="Main ">
       <h1 className="text-center fw-bold m-1">Class Management</h1>
       <div className="row">
         <div className="column-01 col-2 m-4">
