@@ -18,6 +18,7 @@ const [startTime,setStartTime]=useState("");
 const [endTime,setEndTime] = useState("");
 const [classRoom,setClassRoom] = useState("")
 const [classId,setClassId] = useState("")
+const [errorMessage,setErrorMessage] = useState("");
 
 const [classes,setClasses] = useState([])
 
@@ -25,6 +26,12 @@ const [classes,setClasses] = useState([])
 // ! Save Classes
 const SaveClass =async (e) =>{
     e.preventDefault();
+    if(!className || !classType || !subject || !tutor || !grade || !batch || !classFee || !day || !startTime || !endTime || !classRoom || !classId){
+      setErrorMessage("All fields are required! Please fill out all fields")
+      return;
+    }
+
+
     try{
         const response = await axios.post("http://127.0.0.1:8000/smsBK/classMgSave",{
             className:className,
@@ -174,6 +181,7 @@ const handleUpdate = async (id,e) =>{
         {/* Second Column Body*/}
         <div className="col-8 p-5 m-1">
           <Form className="container column-02">
+          {errorMessage && <p style={{color:"red",fontWeight:"bold"}}>{errorMessage}</p> }
             <div className="row">
               <div className="col-md-6">
                 <Form.Group className="mb-3" >

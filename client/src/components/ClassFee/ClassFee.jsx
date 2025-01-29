@@ -10,10 +10,16 @@ function ClassFee(){
         const [className,setClassName] = useState("");
         const [paymentMonth,setPaymentMonth] = useState("");
         const [classFee,setClassFee] = useState("");
+         const [errorMessage ,setErrorMessage] = useState("")
    
          // ! Save Class
         const Submit = async(e) =>{
         e.preventDefault();
+        if(!studentID || !className || !paymentMonth || !classFee){
+          setErrorMessage("All fields are required! Please fill out all fields")
+          return;
+        }
+
         try{
           const response = await axios.post("http://127.0.0.1:8000/smsBK/classFeeSave",{
             studentID,  
@@ -142,6 +148,9 @@ const handleUpdate = async (id,e) =>{
       <div className="col-8 p-5 m-1 ">
      <div className='container'>
      <Form className=' column-02 ' >
+       {/* Form validation */}
+       {errorMessage && <p style={{color:"red",fontWeight:"bold"}}>{errorMessage}</p> }
+       
           <div className="row">
             <div className="col-10">
               <Form.Group className="mb-3" >

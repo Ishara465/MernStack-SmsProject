@@ -17,6 +17,7 @@ function StudentManagement ()  {
   const [stNic, SetStNic] = useState("");
   const [stEmail, SetStEmail] = useState("");
   const [stAge, SetStAge] = useState("");
+  const [errorMessage ,setErrorMessage] = useState("")
 
   const [students,setStudents] =useState([])
 
@@ -26,6 +27,13 @@ function StudentManagement ()  {
 // ! Save Student Function
   const Submit = async (e) => {
     e.preventDefault();
+
+    if(!stName || !stId || !stConNumber || !stDOB || !stAddress || !stNic || !stEmail || !stAge){
+      setErrorMessage("All fields are required! Please fill out all fields")
+      return;
+    }
+
+    setErrorMessage("");
     try {
       const response = await axios.post("http://127.0.0.1:8000/smsBK/StudentSave", {
         stName: stName, // Aligning frontend state with backend schema
@@ -152,6 +160,9 @@ const handleUpdate = async (id,e) => {
         {/* Second column Body */}
         <div className=" col-8 p-5 m-1">
           <Form className='container column-02'>
+            {/* Form validation */}
+            {errorMessage && <p style={{color:"red",fontWeight:"bold"}}>{errorMessage}</p> }
+            
             <div className="row">
               <div className="col-md-6">
                 <Form.Group className="mb-3" controlId="formStudentName">
@@ -160,6 +171,7 @@ const handleUpdate = async (id,e) => {
                     placeholder="Enter student name"
                     onChange={(e) => SetStName(e.target.value)}
                     value={stName}
+                    required
                   />
                 </Form.Group>
 
@@ -233,7 +245,9 @@ const handleUpdate = async (id,e) => {
             {/* Submit Button */}
             <div className="d-flex justify-content-center mt-3">
               <div className="m-2">
-                <Button className='btn btn-success' type="submit" onClick={Submit}>Submit</Button>
+                <Button className='btn btn-success' type="submit" onClick={Submit}
+                // disabled={!stName || !stId || !stConNumber || !stDOB || !stAddress || !stNic || !stEmail || !stAge}
+                >Submit</Button>
                 <Button className='btn btn-secondary m-1 p-2' type="clear" >Clear</Button>
               </div>
             </div>

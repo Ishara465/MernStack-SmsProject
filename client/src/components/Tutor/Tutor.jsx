@@ -14,10 +14,17 @@ function Tutor  ()  {
     const [tNic,setTNic] = useState("");
     const [email,setEmail] = useState("");
     const [tSubject,setTSubject] = useState("");
+    const [errorMessage ,setErrorMessage] = useState("")
     
     // ! Save Student
     const Submit = async(e) =>{
       e.preventDefault();
+
+      if(!tName || !tPhoneNumber || !tDob || !tAddress || !tNic || !email || !tSubject){
+        setErrorMessage("All fields are required! Please fill out all fields")
+        return;
+      }
+
       try{
         const response = await axios.post("http://127.0.0.1:8000/smsBK/tutorSave",{
           tName: tName, 
@@ -155,6 +162,9 @@ const handleUpdate = async (id,e) =>{
         {/* Second column body */}
         <div className="col-8 p-5 m-1">
         <Form className='container column-02' >
+          {/* form validation */}
+          {errorMessage && <p style={{color:"red",fontWeight:"bold"}}>{errorMessage}</p> }
+
             <div className="row">
               <div className="col-md-6">
                 <Form.Group className="mb-3" controlId="formStudentName">

@@ -9,10 +9,15 @@ function EventManagement(){
     const [startDateTime,setStartDateTime] = useState("");
     const [ endDateTime,setEndDateTime] = useState("");
     const [description,setDescription] = useState("");
+    const [errorMessage ,setErrorMessage] = useState("")
    
     // ! Save Student
     const Submit = async(e) =>{
       e.preventDefault();
+      if(!title || !startDateTime || !endDateTime || !description){
+        setErrorMessage("All fields are required! Please fill out all fields")
+        return;
+      }
       try{
         const response = await axios.post("http://127.0.0.1:8000/smsBK/eventMgSave",{
           title, 
@@ -144,6 +149,9 @@ const handleUpdate = async (id,e) =>{
       {/* Second column body */}
       <div className="col-8 p-5 m-1 ">
       <Form className='container column-02 ' >
+{/* form validation */}
+
+{errorMessage && <p style={{color:"red",fontWeight:"bold"}}>{errorMessage}</p>}
           <div className="row">
             <div className="col-md-6">
               <Form.Group className="mb-3" >
